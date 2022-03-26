@@ -25,8 +25,8 @@ namespace ProjectTower
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            _graphics.PreferredBackBufferWidth = 1280;
-            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.PreferredBackBufferWidth = 1280*2;
+            _graphics.PreferredBackBufferHeight = 720*2;
 
             Camera.CameraSize = new Vector2(640, 360);
         }
@@ -46,6 +46,7 @@ namespace ProjectTower
             AssetLibrary.AddAsset("player", Content.Load<Texture2D>("Sprites/Player"));
             AssetLibrary.AddAsset("orc", Content.Load<Texture2D>("Sprites/Orc"));
             AssetLibrary.AddAsset("rat", Content.Load<Texture2D>("Sprites/Rat"));
+            AssetLibrary.AddAsset("backgroundMenu", Content.Load<Texture2D>("Sprites/BackgroundMenu"));
 
 
             var spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("player"));
@@ -81,7 +82,7 @@ namespace ProjectTower
             });
 
 
-            AssetLibrary.GetAsset<TiledMap>("map_0_0").Goto();
+            AssetLibrary.GetAsset<TiledMap>("map_menu").Goto();
 
             //font
             AssetLibrary.AddAsset("fntText", Content.Load<SpriteFont>("fonts/fntText"));
@@ -102,6 +103,11 @@ namespace ProjectTower
             }
 
             Scene.Update(gameTime);
+
+            if (Scene.GetEntity<MainMenu>(out var menu))
+            {
+                if (menu.Quit) Exit();
+            }
 
             base.Update(gameTime);
         }
