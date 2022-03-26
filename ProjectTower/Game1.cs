@@ -47,6 +47,9 @@ namespace ProjectTower
 
             AssetLibrary.GetAsset<TiledMap>("map_menu").Goto();
 
+            //font
+            AssetLibrary.AddAsset("fntText", Content.Load<SpriteFont>("fonts/fntText"));
+
 
             // TODO: use this.Content to load your game content here
         }
