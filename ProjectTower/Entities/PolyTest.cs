@@ -30,7 +30,10 @@ namespace ProjectTower.Entities
             if (_polyTarget == 0) SetTarget();
             if(_polyTarget < PolyList.Count)
             {
-                if(Vector2.Distance(_pos, PolyList[_polyTarget]) < 1.0f)
+                Vector2 velNorm = _vel, polyNorm = PolyList[_polyTarget] - _pos;
+                velNorm.Normalize();
+                polyNorm.Normalize();
+                if(Vector2.Dot(velNorm, polyNorm) <= -.95f )
                 {
                     SetTarget();
                 }

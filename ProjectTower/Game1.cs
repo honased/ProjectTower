@@ -7,8 +7,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ProjectTower.Entities;
+using ProjectTower.Entities.Enemies;
 using ProjectTower.Entities.Menus;
 using ProjectTower.Entities.Players;
+using ProjectTower.Entities.Spawner;
 
 namespace ProjectTower
 {
@@ -42,26 +44,40 @@ namespace ProjectTower
 
             AssetLibrary.AddAsset("tileGrass", Content.Load<Texture2D>("Tiled/Tilesets/tileGrass"));
             AssetLibrary.AddAsset("player", Content.Load<Texture2D>("Sprites/Player"));
+            AssetLibrary.AddAsset("orc", Content.Load<Texture2D>("Sprites/Orc"));
+            AssetLibrary.AddAsset("rat", Content.Load<Texture2D>("Sprites/Rat"));
+
+
             var spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("player"));
             spr.Animations.Add("default", SpriteAnimation.FromSpritesheet(1, 0.0, 0, 0, 16, 24));
             AssetLibrary.AddAsset("sprPlayer", spr);
+
+            spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("orc"));
+            spr.Animations.Add("default", SpriteAnimation.FromSpritesheet(1, 0.0, 0, 0, 16, 21));
+            AssetLibrary.AddAsset("sprOrc", spr);
+
+            spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("rat"));
+            spr.Animations.Add("default", SpriteAnimation.FromSpritesheet(1, 0.0, 0, 0, 16, 16));
+            AssetLibrary.AddAsset("sprRat", spr);
 
             AssetLibrary.AddAsset("tilesetGrass", new TiledTileset(JSON.FromFile("Content/Tiled/Tilesets/tilesetGrass.json") as JObject));
             AssetLibrary.AddAsset("map_0_0", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_0_0.json") as JObject));
             AssetLibrary.AddAsset("map_menu", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_menu.json") as JObject));
             TiledManager.AddSpawnerDefinition("Menu", obj => { return new MainMenu(); });
             TiledManager.AddSpawnerDefinition("Player", obj => { return new Player(obj.X, obj.Y); });
-            TiledManager.AddSpawnerDefinition("PolyPath", obj => 
+            TiledManager.AddSpawnerDefinition("Orc", obj => { return new Orc(obj.X, obj.Y); });
+            TiledManager.AddSpawnerDefinition("EnemySpawner", obj => { return new EnemySpawner(obj.CustomProperties["Path"] as string); });
+            TiledManager.AddSpawnerDefinition("EnemyPath", obj => 
             { 
-                var pt = new PolyTest(new Vector2(obj.X, obj.Y)); 
+                var ep = new EnemyPath(obj.Name); 
                 if(obj.PolyLine != null)
                 {
                     foreach(var tup in obj.PolyLine.Positions)
                     {
-                        pt.PolyList.Add(new Vector2(tup.Item1, tup.Item2));
+                        ep.Path.Add(new Vector2(tup.Item1, tup.Item2));
                     }
                 }
-                return pt;
+                return ep;
             });
 
 
