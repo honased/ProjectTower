@@ -6,6 +6,7 @@ using HonasGame.Tiled;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ProjectTower.Entities.Menus;
 
 namespace ProjectTower
 {
@@ -40,8 +41,12 @@ namespace ProjectTower
             AssetLibrary.AddAsset("tileGrass", Content.Load<Texture2D>("Tiled/Tilesets/tileGrass"));
             AssetLibrary.AddAsset("tilesetGrass", new TiledTileset(JSON.FromFile("Content/Tiled/Tilesets/tilesetGrass.json") as JObject));
             AssetLibrary.AddAsset("map_0_0", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_0_0.json") as JObject));
+            AssetLibrary.AddAsset("map_menu", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_menu.json") as JObject));
+            TiledManager.AddSpawnerDefinition("Menu", obj => { return new MainMenu(); });
 
-            AssetLibrary.GetAsset<TiledMap>("map_0_0").Goto();
+
+            AssetLibrary.GetAsset<TiledMap>("map_menu").Goto();
+
 
             // TODO: use this.Content to load your game content here
         }
