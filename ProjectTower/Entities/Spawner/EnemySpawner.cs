@@ -1,5 +1,10 @@
-﻿using HonasGame.ECS;
+﻿using HonasGame;
+using HonasGame.ECS;
+using HonasGame.ECS.Components;
+using HonasGame.ECS.Components.Physics;
 using Microsoft.Xna.Framework;
+using ProjectTower.Components;
+using ProjectTower.Entities.Enemies;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -29,6 +34,18 @@ namespace ProjectTower.Entities.Spawner
                         break;
                     }
                 }
+            }
+
+            if(Input.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Space))
+            {
+                var orc = new Orc(_path.Path[0].X, _path.Path[0].Y);
+
+                if(orc.GetComponent<Transform2D>(out var t2D) && orc.GetComponent<Mover2D>(out var m2D))
+                {
+                    new PathFollower(orc, t2D, m2D, _path.Path, 30.0f);
+                }
+
+                Scene.AddEntity(orc);
             }
 
             base.Update(gameTime);

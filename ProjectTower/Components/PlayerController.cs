@@ -9,6 +9,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using HonasGame.Helper;
+using ProjectTower.Entities.Towers;
 
 namespace ProjectTower.Components
 {
@@ -19,12 +20,14 @@ namespace ProjectTower.Components
         private Mover2D _mover;
         private Velocity2D _velocity;
         private WalkAnimation _animation;
+        private Collider2D _collider;
 
-        public PlayerController(Entity parent, Transform2D transform, SpriteRenderer renderer, Mover2D mover) : base(parent)
+        public PlayerController(Entity parent, Transform2D transform, Collider2D collider, SpriteRenderer renderer, Mover2D mover) : base(parent)
         {
             _transform = transform;
             _renderer = renderer;
             _mover = mover;
+            _collider = collider;
             _velocity = new Velocity2D();
             _animation = new WalkAnimation(parent, _renderer);
         }
@@ -48,6 +51,25 @@ namespace ProjectTower.Components
 
             _mover.MoveX(_moveVector.X, 0);
             _mover.MoveY(_moveVector.Y, 0);
+
+            Entity e = _collider.CollidesWithAnything(out uint tag);
+            if(e != null)
+            {
+                if ((tag & Globals.TAG_TOWER_PLOT) > 0 && e is TowerPlot tp)
+                {
+                    if (Input.IsKeyPressed(Keys.E) && tp.GetComponent<Transform2D>(out var tpTransf))
+                    {
+                        Scene.AddEntity(new ArcherTower(tpTransf.Position.X, tpTransf.Position.Y));
+                        tp.Destroy();
+                    }
+                }
+                else if((tag & Globals.TAG_TOWER) > 0 && e.GetComponent<HealthComponent>(out var hp) && Input.IsKeyPressed(Keys.E))
+                {
+                    hp.Health += 10;
+                }
+            }
+
+            
         }
     }
 }

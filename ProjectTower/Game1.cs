@@ -11,6 +11,7 @@ using ProjectTower.Entities.Enemies;
 using ProjectTower.Entities.Menus;
 using ProjectTower.Entities.Players;
 using ProjectTower.Entities.Spawner;
+using ProjectTower.Entities.Towers;
 
 namespace ProjectTower
 {
@@ -25,8 +26,9 @@ namespace ProjectTower
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            _graphics.PreferredBackBufferWidth = 1280*2;
-            _graphics.PreferredBackBufferHeight = 720*2;
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
+            //_graphics.IsFullScreen = true;
 
             Camera.CameraSize = new Vector2(640, 360);
         }
@@ -47,6 +49,9 @@ namespace ProjectTower
             AssetLibrary.AddAsset("orc", Content.Load<Texture2D>("Sprites/Orc"));
             AssetLibrary.AddAsset("rat", Content.Load<Texture2D>("Sprites/Rat"));
             AssetLibrary.AddAsset("backgroundMenu", Content.Load<Texture2D>("Sprites/BackgroundMenu"));
+            AssetLibrary.AddAsset("towerPlot", Content.Load<Texture2D>("Sprites/TowerPlot"));
+            AssetLibrary.AddAsset("archerTower", Content.Load<Texture2D>("Sprites/ArcherTower"));
+            AssetLibrary.AddAsset("magicBall", Content.Load<Texture2D>("Sprites/MagicBall"));
 
 
             var spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("player"));
@@ -61,12 +66,22 @@ namespace ProjectTower
             spr.Animations.Add("default", SpriteAnimation.FromSpritesheet(1, 0.0, 0, 0, 16, 16));
             AssetLibrary.AddAsset("sprRat", spr);
 
+            spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("towerPlot"));
+            spr.Animations.Add("default", SpriteAnimation.FromSpritesheet(1, 0.0, 0, 0, 12, 12));
+            AssetLibrary.AddAsset("sprTowerPlot", spr);
+
+            spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("archerTower"));
+            spr.Animations.Add("default", SpriteAnimation.FromSpritesheet(1, 0.0, 0, 0, 12, 24));
+            AssetLibrary.AddAsset("sprArcherTower", spr);
+
             AssetLibrary.AddAsset("tilesetGrass", new TiledTileset(JSON.FromFile("Content/Tiled/Tilesets/tilesetGrass.json") as JObject));
             AssetLibrary.AddAsset("map_0_0", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_0_0.json") as JObject));
             AssetLibrary.AddAsset("map_menu", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_menu.json") as JObject));
+            AssetLibrary.AddAsset("map_tutorial", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_tutorial.json") as JObject));
             TiledManager.AddSpawnerDefinition("Menu", obj => { return new MainMenu(); });
             TiledManager.AddSpawnerDefinition("Player", obj => { return new Player(obj.X, obj.Y); });
             TiledManager.AddSpawnerDefinition("Orc", obj => { return new Orc(obj.X, obj.Y); });
+            TiledManager.AddSpawnerDefinition("TowerPlot", obj => { return new TowerPlot(obj.X, obj.Y); });
             TiledManager.AddSpawnerDefinition("EnemySpawner", obj => { return new EnemySpawner(obj.CustomProperties["Path"] as string); });
             TiledManager.AddSpawnerDefinition("EnemyPath", obj => 
             { 
@@ -82,7 +97,7 @@ namespace ProjectTower
             });
 
 
-            AssetLibrary.GetAsset<TiledMap>("map_menu").Goto();
+            AssetLibrary.GetAsset<TiledMap>("map_tutorial").Goto();
 
             //font
             AssetLibrary.AddAsset("fntText", Content.Load<SpriteFont>("fonts/fntText"));

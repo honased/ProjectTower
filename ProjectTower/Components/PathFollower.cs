@@ -16,30 +16,65 @@ namespace ProjectTower.Components
         private Velocity2D _velocity;
         private int _pathTarget;
         private Vector2 _dir;
+        private float _speed;
+        private WalkAnimation _animation;
 
-        public PathFollower(Entity parent, Transform2D transf, Mover2D mover, List<Vector2> path) : base(parent)
+        public PathFollower(Entity parent, Transform2D transf, Mover2D mover, List<Vector2> path, float speed) : base(parent)
         {
             _path = path;
             _transform = transf;
             _mover = mover;
+            _speed = speed;
             _velocity = new Velocity2D();
             _pathTarget = 0;
+            _dir = Vector2.Zero;
+            SetNextTarget();
+            if (parent.GetComponent<SpriteRenderer>(out var renderer))
+            {
+                _animation = new WalkAnimation(parent, renderer);
+            }
+            else _animation = null;
         }
 
         private void SetNextTarget()
         {
             _pathTarget += 1;
-            _transform.Position = _path[_pathTarget - 1];
+            _transform.Position = new Vector2(MathF.Round(_path[_pathTarget - 1].X), MathF.Round(_path[_pathTarget - 1].Y));
 
             if(_pathTarget < _path.Count)
             {
-
+                _dir = _path[_pathTarget] - _transform.Position;
+                _dir.Normalize();
             }
+        }
+
+        private bool AtTarget()
+        {
+            if (_pathTarget >= _path.Count) return false;
+
+            Vector2 posDifVec = _path[_pathTarget] - _transform.Position;
+            posDifVec.Normalize();
+
+            if(Vector2.Dot(_dir, posDifVec) < -0.9f)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public override void Update(GameTime gameTime)
         {
-            
+            if (AtTarget()) SetNextTarget();
+
+            _velocity.Set(_dir * _speed);
+
+            _animation?.SetVelocity(_dir * _speed);
+
+            Vector2 actVel = _velocity.CalculateVelocity(gameTime);
+
+            _mover.MoveX(actVel.X, 0);
+            _mover.MoveY(actVel.Y, 0);
         }
     }
 }

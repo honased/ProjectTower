@@ -18,9 +18,9 @@ namespace ProjectTower.Entities.Players
             var sr = new SpriteRenderer(this) { Sprite = AssetLibrary.GetAsset<Sprite>("sprPlayer"), Animation = "default" };
             sr.CenterOrigin();
             t2D.Position += sr.Origin;
-            new Collider2D(this) { Transform = t2D, Shape = new BoundingRectangle(16, 24) { Offset = -sr.Origin } };
+            var c2D = new Collider2D(this) { Transform = t2D, Shape = new BoundingRectangle(16, 24) { Offset = -sr.Origin } };
             var m2D = new Mover2D(this);
-            new PlayerController(this, t2D, sr, m2D);
+            new PlayerController(this, t2D, c2D, sr, m2D);
         }
 
         protected override void Cleanup()

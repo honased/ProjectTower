@@ -2,6 +2,7 @@
 using HonasGame.Assets;
 using HonasGame.ECS;
 using HonasGame.ECS.Components;
+using HonasGame.ECS.Components.Physics;
 using Microsoft.Xna.Framework;
 using ProjectTower.Components;
 using System;
@@ -12,33 +13,20 @@ namespace ProjectTower.Entities.Enemies
 {
     public class Orc : Entity
     {
-        private WalkAnimation _animation;
-
         public Orc(float x, float y)
         {
             var t2D = new Transform2D(this) { Position = new Vector2(x, y) };
             var r2D = new SpriteRenderer(this) { Sprite = AssetLibrary.GetAsset<Sprite>("sprOrc"), Animation = "default" };
             r2D.CenterOrigin();
 
-            t2D.Position += r2D.Origin;
-
-            _animation = new WalkAnimation(this, r2D);
+            new Collider2D(this) { Shape = new BoundingRectangle(16, 22) { Offset = -r2D.Origin }, Tag = Globals.TAG_ENEMY };
+            new Mover2D(this);
+            new HealthComponent(this, 3, Dead);
         }
 
-        public override void Update(GameTime gameTime)
+        private void Dead()
         {
-            float t = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            
-            float vx = Input.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Right) ? 1 : -1;
-            vx *= 60;
-
-            _animation.SetVelocity(new Vector2(vx, 0));
-            if(GetComponent<Transform2D>(out var tt))
-            {
-                tt.Position += Vector2.UnitX * vx * t;
-            }
-
-            base.Update(gameTime);
+            Destroy();
         }
 
         protected override void Cleanup()
