@@ -6,6 +6,7 @@ using HonasGame.Tiled;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ProjectTower.Entities;
 using ProjectTower.Entities.Menus;
 using ProjectTower.Entities.Players;
 
@@ -50,6 +51,18 @@ namespace ProjectTower
             AssetLibrary.AddAsset("map_menu", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_menu.json") as JObject));
             TiledManager.AddSpawnerDefinition("Menu", obj => { return new MainMenu(); });
             TiledManager.AddSpawnerDefinition("Player", obj => { return new Player(obj.X, obj.Y); });
+            TiledManager.AddSpawnerDefinition("PolyPath", obj => 
+            { 
+                var pt = new PolyTest(new Vector2(obj.X, obj.Y)); 
+                if(obj.PolyLine != null)
+                {
+                    foreach(var tup in obj.PolyLine.Positions)
+                    {
+                        pt.PolyList.Add(new Vector2(tup.Item1, tup.Item2));
+                    }
+                }
+                return pt;
+            });
 
 
             AssetLibrary.GetAsset<TiledMap>("map_0_0").Goto();
@@ -67,6 +80,11 @@ namespace ProjectTower
                 Exit();
 
             // TODO: Add your update logic here
+            if(Input.IsKeyPressed(Keys.R))
+            {
+                AssetLibrary.GetAsset<TiledMap>("map_0_0").Goto();
+            }
+
             Scene.Update(gameTime);
 
             base.Update(gameTime);

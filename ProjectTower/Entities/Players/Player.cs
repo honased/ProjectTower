@@ -17,7 +17,8 @@ namespace ProjectTower.Entities.Players
             var t2D = new Transform2D(this) { Position = new Vector2(x, y) };
             var sr = new SpriteRenderer(this) { Sprite = AssetLibrary.GetAsset<Sprite>("sprPlayer"), Animation = "default" };
             sr.CenterOrigin();
-            new Collider2D(this) { Transform = t2D, Shape = new BoundingRectangle(16, 24) };
+            t2D.Position += sr.Origin;
+            new Collider2D(this) { Transform = t2D, Shape = new BoundingRectangle(16, 24) { Offset = -sr.Origin } };
             var m2D = new Mover2D(this);
             new PlayerController(this, t2D, sr, m2D);
         }
