@@ -1,4 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HonasGame;
+using HonasGame.Assets;
+using HonasGame.ECS;
+using HonasGame.JSON;
+using HonasGame.Tiled;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -14,6 +19,11 @@ namespace ProjectTower
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            _graphics.PreferredBackBufferWidth = 640;
+            _graphics.PreferredBackBufferHeight = 360;
+
+            Camera.CameraSize = new Vector2(640, 360);
         }
 
         protected override void Initialize()
@@ -27,6 +37,12 @@ namespace ProjectTower
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            AssetLibrary.AddAsset("tileGrass", Content.Load<Texture2D>("Tiled/Tilesets/tileGrass"));
+            AssetLibrary.AddAsset("tilesetGrass", new TiledTileset(JSON.FromFile("Content/Tiled/Tilesets/tilesetGrass.json") as JObject));
+            AssetLibrary.AddAsset("map_0_0", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_0_0.json") as JObject));
+
+            AssetLibrary.GetAsset<TiledMap>("map_0_0").Goto();
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -36,6 +52,7 @@ namespace ProjectTower
                 Exit();
 
             // TODO: Add your update logic here
+            Scene.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -45,6 +62,7 @@ namespace ProjectTower
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            Scene.Draw(gameTime, _spriteBatch, new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight));
 
             base.Draw(gameTime);
         }
