@@ -1,5 +1,11 @@
 { "columns":16,
- "image":"..\/Tilesets\/tileGrass.png",
+ "grid":
+    {
+     "height":12,
+     "orientation":"orthogonal",
+     "width":12
+    },
+ "image":"tileGrass.png",
  "imageheight":256,
  "imagewidth":256,
  "margin":0,
@@ -7,8 +13,8 @@
  "spacing":0,
  "tilecount":256,
  "tiledversion":"1.8.2",
- "tileheight":16,
- "tilewidth":16,
+ "tileheight":12,
+ "tilewidth":12,
  "type":"tileset",
  "version":"1.8"
 }

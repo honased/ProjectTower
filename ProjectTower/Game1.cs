@@ -20,8 +20,8 @@ namespace ProjectTower
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            _graphics.PreferredBackBufferWidth = 640;
-            _graphics.PreferredBackBufferHeight = 360;
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
 
             Camera.CameraSize = new Vector2(640, 360);
         }
