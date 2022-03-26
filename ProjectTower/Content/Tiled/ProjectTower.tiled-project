@@ -5,7 +5,8 @@
     "extensionsPath": "extensions",
     "folders": [
         "Tilesets",
-        "Maps"
+        "Maps",
+        "Objects"
     ],
     "objectTypesFile": "",
     "propertyTypes": [

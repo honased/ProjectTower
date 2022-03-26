@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ProjectTower.Entities.Menus;
+using ProjectTower.Entities.Players;
 
 namespace ProjectTower
 {
@@ -39,13 +40,19 @@ namespace ProjectTower
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             AssetLibrary.AddAsset("tileGrass", Content.Load<Texture2D>("Tiled/Tilesets/tileGrass"));
+            AssetLibrary.AddAsset("player", Content.Load<Texture2D>("Sprites/Player"));
+            var spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("player"));
+            spr.Animations.Add("default", SpriteAnimation.FromSpritesheet(1, 0.0, 0, 0, 16, 24));
+            AssetLibrary.AddAsset("sprPlayer", spr);
+
             AssetLibrary.AddAsset("tilesetGrass", new TiledTileset(JSON.FromFile("Content/Tiled/Tilesets/tilesetGrass.json") as JObject));
             AssetLibrary.AddAsset("map_0_0", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_0_0.json") as JObject));
             AssetLibrary.AddAsset("map_menu", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_menu.json") as JObject));
             TiledManager.AddSpawnerDefinition("Menu", obj => { return new MainMenu(); });
+            TiledManager.AddSpawnerDefinition("Player", obj => { return new Player(obj.X, obj.Y); });
 
 
-            AssetLibrary.GetAsset<TiledMap>("map_menu").Goto();
+            AssetLibrary.GetAsset<TiledMap>("map_0_0").Goto();
 
             //font
             AssetLibrary.AddAsset("fntText", Content.Load<SpriteFont>("fonts/fntText"));
