@@ -360,7 +360,7 @@
                         {
                          "name":"Cost",
                          "type":"int",
-                         "value":225
+                         "value":265
                         }, 
                         {
                          "name":"TowerType",
