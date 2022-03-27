@@ -66,6 +66,14 @@ namespace ProjectTower.Components
                                 addEnt = new ArcherTower(tpTransf.Position.X, tpTransf.Position.Y);
                                 break;
 
+                            case "Mortar Tower":
+                                addEnt = new MortarTower(tpTransf.Position.X, tpTransf.Position.Y);
+                                break;
+
+                            case "Divine Tower":
+                                addEnt = new DivineTower(tpTransf.Position.X, tpTransf.Position.Y);
+                                break;
+
                             default:
                                 throw new Exception();
                         }

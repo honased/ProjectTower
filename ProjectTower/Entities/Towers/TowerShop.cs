@@ -43,6 +43,16 @@ namespace ProjectTower.Entities.Towers
                             _cost += 50;
                             break;
 
+                        case "Mortar Tower":
+                            towerSprite = "sprMortarTower";
+                            _cost += 50;
+                            break;
+
+                        case "Divine Tower":
+                            towerSprite = "sprDivineTower";
+                            _cost += 50;
+                            break;
+
                         default:
                             throw new Exception();
                     }

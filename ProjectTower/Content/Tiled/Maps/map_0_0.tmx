@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="54" height="30" tilewidth="12" tileheight="12" infinite="0" nextlayerid="6" nextobjectid="31">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="54" height="30" tilewidth="12" tileheight="12" infinite="0" nextlayerid="6" nextobjectid="36">
  <editorsettings>
   <export target="map_0_0.json" format="json"/>
  </editorsettings>
@@ -72,6 +72,28 @@
   <object id="26" type="TowerDisplay" gid="7" x="12" y="312" width="12" height="24">
    <properties>
     <property name="Sprite" value="sprArcherTower"/>
+   </properties>
+  </object>
+  <object id="31" type="TowerDisplay" gid="7" x="12" y="276" width="12" height="24">
+   <properties>
+    <property name="Sprite" value="sprMortarTower"/>
+   </properties>
+  </object>
+  <object id="32" type="TowerShop" x="24" y="289" width="28.3636" height="8.875">
+   <properties>
+    <property name="Cost" type="int" value="150"/>
+    <property name="TowerType" value="Mortar Tower"/>
+   </properties>
+  </object>
+  <object id="33" type="TowerShop" x="24" y="253" width="28.3636" height="8.875">
+   <properties>
+    <property name="Cost" type="int" value="150"/>
+    <property name="TowerType" value="Divine Tower"/>
+   </properties>
+  </object>
+  <object id="35" type="TowerDisplay" gid="7" x="12" y="240" width="12" height="24">
+   <properties>
+    <property name="Sprite" value="sprDivineTower"/>
    </properties>
   </object>
  </objectgroup>
