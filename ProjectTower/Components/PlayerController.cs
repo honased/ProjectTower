@@ -49,18 +49,29 @@ namespace ProjectTower.Components
             _velocity.Set(new Vector2(vx, vy) * 60.0f);
             Vector2 _moveVector = _velocity.CalculateVelocity(gameTime);
 
-            _mover.MoveX(_moveVector.X, 0);
-            _mover.MoveY(_moveVector.Y, 0);
+            _mover.MoveX(_moveVector.X, Globals.TAG_SOLID);
+            _mover.MoveY(_moveVector.Y, Globals.TAG_SOLID);
 
             Entity e = _collider.CollidesWithAnything(out uint tag);
             if(e != null)
             {
                 if ((tag & Globals.TAG_TOWER_PLOT) > 0 && e is TowerPlot tp)
                 {
-                    if (Input.IsKeyPressed(Keys.E) && tp.GetComponent<Transform2D>(out var tpTransf))
+                    if (Input.IsKeyPressed(Keys.E) && tp.GetComponent<Transform2D>(out var tpTransf) && Parent.GetComponent<TowerPickup>(out var towerPickup))
                     {
-                        Scene.AddEntity(new ArcherTower(tpTransf.Position.X, tpTransf.Position.Y));
+                        Entity addEnt = null;
+                        switch(towerPickup.TowerType)
+                        {
+                            case "Mage Tower":
+                                addEnt = new ArcherTower(tpTransf.Position.X, tpTransf.Position.Y);
+                                break;
+
+                            default:
+                                throw new Exception();
+                        }
+                        Scene.AddEntity(addEnt);
                         tp.Destroy();
+                        Parent.RemoveComponent(towerPickup);
                     }
                 }
                 else if((tag & Globals.TAG_TOWER) > 0 && e.GetComponent<HealthComponent>(out var hp) && Input.IsKeyPressed(Keys.E))

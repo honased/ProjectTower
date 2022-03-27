@@ -12,26 +12,27 @@ namespace ProjectTower.Components
     {
         private List<Vector2> _path;
         private Transform2D _transform;
-        private Mover2D _mover;
-        private Velocity2D _velocity;
+        private Vector2 _velocity;
+
+        public Vector2 Velocity => new Vector2(_velocity.X, _velocity.Y);
+
         private int _pathTarget;
         private Vector2 _dir;
         private float _speed;
         private WalkAnimation _animation;
 
-        public PathFollower(Entity parent, Transform2D transf, Mover2D mover, List<Vector2> path, float speed) : base(parent)
+        public PathFollower(Entity parent, Transform2D transf, List<Vector2> path, float speed) : base(parent)
         {
             _path = path;
             _transform = transf;
-            _mover = mover;
             _speed = speed;
-            _velocity = new Velocity2D();
+            _velocity = Vector2.Zero;
             _pathTarget = 0;
             _dir = Vector2.Zero;
             SetNextTarget();
-            if (parent.GetComponent<SpriteRenderer>(out var renderer))
+            if (parent.GetComponent<SpriteRenderer>(out var renderer) && parent.GetComponent<SpeedComponent>(out var spd))
             {
-                _animation = new WalkAnimation(parent, renderer);
+                _animation = new WalkAnimation(parent, renderer, (30/spd.Speed)*.2);
             }
             else _animation = null;
         }
@@ -67,14 +68,13 @@ namespace ProjectTower.Components
         {
             if (AtTarget()) SetNextTarget();
 
-            _velocity.Set(_dir * _speed);
+            _velocity = _dir * _speed;
 
             _animation?.SetVelocity(_dir * _speed);
 
-            Vector2 actVel = _velocity.CalculateVelocity(gameTime);
+            Vector2 actVel = _velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            _mover.MoveX(actVel.X, 0);
-            _mover.MoveY(actVel.Y, 0);
+            _transform.Position += actVel;
         }
     }
 }

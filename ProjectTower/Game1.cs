@@ -48,6 +48,7 @@ namespace ProjectTower
             AssetLibrary.AddAsset("player", Content.Load<Texture2D>("Sprites/Player"));
             AssetLibrary.AddAsset("orc", Content.Load<Texture2D>("Sprites/Orc"));
             AssetLibrary.AddAsset("rat", Content.Load<Texture2D>("Sprites/Rat"));
+            AssetLibrary.AddAsset("giant", Content.Load<Texture2D>("Sprites/Giant"));
             AssetLibrary.AddAsset("backgroundMenu", Content.Load<Texture2D>("Sprites/BackgroundMenu"));
             AssetLibrary.AddAsset("towerPlot", Content.Load<Texture2D>("Sprites/TowerPlot"));
             AssetLibrary.AddAsset("archerTower", Content.Load<Texture2D>("Sprites/ArcherTower"));
@@ -66,6 +67,10 @@ namespace ProjectTower
             spr.Animations.Add("default", SpriteAnimation.FromSpritesheet(1, 0.0, 0, 0, 16, 16));
             AssetLibrary.AddAsset("sprRat", spr);
 
+            spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("giant"));
+            spr.Animations.Add("default", SpriteAnimation.FromSpritesheet(1, 0.0, 0, 0, 27, 30));
+            AssetLibrary.AddAsset("sprGiant", spr);
+
             spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("towerPlot"));
             spr.Animations.Add("default", SpriteAnimation.FromSpritesheet(1, 0.0, 0, 0, 12, 12));
             AssetLibrary.AddAsset("sprTowerPlot", spr);
@@ -80,9 +85,11 @@ namespace ProjectTower
             AssetLibrary.AddAsset("map_tutorial", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_tutorial.json") as JObject));
             TiledManager.AddSpawnerDefinition("Menu", obj => { return new MainMenu(); });
             TiledManager.AddSpawnerDefinition("Player", obj => { return new Player(obj.X, obj.Y); });
-            TiledManager.AddSpawnerDefinition("Orc", obj => { return new Orc(obj.X, obj.Y); });
             TiledManager.AddSpawnerDefinition("TowerPlot", obj => { return new TowerPlot(obj.X, obj.Y); });
+            TiledManager.AddSpawnerDefinition("CollisionBox", obj => { return new CollisionBox(obj.X, obj.Y, obj.Width, obj.Height); });
             TiledManager.AddSpawnerDefinition("EnemySpawner", obj => { return new EnemySpawner(obj.CustomProperties["Path"] as string); });
+            TiledManager.AddSpawnerDefinition("TowerShop", obj => { return new TowerShop(obj.X, obj.Y, obj.Width, obj.Height, obj.CustomProperties["TowerType"] as string, (int)((double)obj.CustomProperties["Cost"])); });
+            TiledManager.AddSpawnerDefinition("TowerDisplay", obj => { return new TowerDisplay(obj.X, obj.Y, obj.CustomProperties["Sprite"] as string); });
             TiledManager.AddSpawnerDefinition("EnemyPath", obj => 
             { 
                 var ep = new EnemyPath(obj.Name); 
@@ -97,7 +104,7 @@ namespace ProjectTower
             });
 
 
-            AssetLibrary.GetAsset<TiledMap>("map_tutorial").Goto();
+            AssetLibrary.GetAsset<TiledMap>("map_0_0").Goto();
 
             //font
             AssetLibrary.AddAsset("fntText", Content.Load<SpriteFont>("fonts/fntText"));

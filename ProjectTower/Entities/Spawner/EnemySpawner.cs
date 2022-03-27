@@ -20,6 +20,8 @@ namespace ProjectTower.Entities.Spawner
         {
             _pathName = path;
             _path = null;
+            var routine = new Coroutine(this, EnemyRoutine());
+            routine.Start();
         }
 
         public override void Update(GameTime gameTime)
@@ -38,17 +40,35 @@ namespace ProjectTower.Entities.Spawner
 
             if(Input.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Space))
             {
-                var orc = new Orc(_path.Path[0].X, _path.Path[0].Y);
-
-                if(orc.GetComponent<Transform2D>(out var t2D) && orc.GetComponent<Mover2D>(out var m2D))
-                {
-                    new PathFollower(orc, t2D, m2D, _path.Path, 30.0f);
-                }
-
-                Scene.AddEntity(orc);
+                CreateEnemy<Orc>();
             }
 
             base.Update(gameTime);
+        }
+
+        private IEnumerator<double> EnemyRoutine()
+        {
+            int i;
+            yield return 1.0;
+            for(i = 0; i < 3; i++)
+            {
+                CreateEnemy<Orc>();
+                yield return 1.0;
+            }
+
+            CreateEnemy<Rat>();
+            CreateEnemy<Giant>();
+        }
+
+        private void CreateEnemy<T>() where T : Entity, new()
+        {
+            Entity e = new T();
+            if (e.GetComponent<Transform2D>(out var t2D) && e.GetComponent<SpeedComponent>(out var spd))
+            {
+                new PathFollower(e, t2D, _path.Path, spd.Speed);
+            }
+
+            Scene.AddEntity(e);
         }
 
         protected override void Cleanup()

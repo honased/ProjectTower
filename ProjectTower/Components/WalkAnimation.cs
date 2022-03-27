@@ -11,8 +11,6 @@ namespace ProjectTower.Components
 {
     public class WalkAnimation : Component
     {
-        private const double WALK_TIME = 0.2;
-
         private SpriteRenderer _renderer;
         private Vector2 _velocity;
         private double _walkTimer;
@@ -20,8 +18,9 @@ namespace ProjectTower.Components
         private bool _walkFlip;
         private int _xScaleTarget;
         private float _fakeXScale;
+        private double _walkTime;
 
-        public WalkAnimation(Entity parent, SpriteRenderer renderer) : base(parent)
+        public WalkAnimation(Entity parent, SpriteRenderer renderer, double walkTime = 0.2) : base(parent)
         {
             _renderer = renderer;
             _velocity = Vector2.Zero;
@@ -30,6 +29,7 @@ namespace ProjectTower.Components
             _walkFlip = false;
             _xScaleTarget = 1;
             _fakeXScale = 1;
+            _walkTime = walkTime;
         }
 
         public void SetVelocity(Vector2 velocity)
@@ -50,7 +50,7 @@ namespace ProjectTower.Components
             {
                 if (_walkTimer <= 0.0)
                 {
-                    _walkTimer = WALK_TIME;
+                    _walkTimer = _walkTime;
                     _rotationGoal = (_walkFlip ? 1 : -1) * MathHelper.PiOver4 / 2.0f;
                     _walkFlip = !_walkFlip;
                 }

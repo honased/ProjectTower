@@ -11,17 +11,17 @@ using System.Text;
 
 namespace ProjectTower.Entities.Enemies
 {
-    public class Orc : Entity
+    public class Rat : Entity
     {
-        public Orc()
+        public Rat()
         {
             var t2D = new Transform2D(this) { Position = new Vector2(0, 10000) };
-            var r2D = new SpriteRenderer(this) { Sprite = AssetLibrary.GetAsset<Sprite>("sprOrc"), Animation = "default" };
+            var r2D = new SpriteRenderer(this) { Sprite = AssetLibrary.GetAsset<Sprite>("sprRat"), Animation = "default" };
             r2D.CenterOrigin();
 
-            new Collider2D(this) { Shape = new BoundingRectangle(16, 22) { Offset = -r2D.Origin }, Transform = t2D, Tag = Globals.TAG_ENEMY };
-            new HealthComponent(this, 3, Dead);
-            new SpeedComponent(this) { Speed = 30.0f };
+            new Collider2D(this) { Shape = new BoundingRectangle(16, 16) { Offset = -r2D.Origin }, Transform = t2D, Tag = Globals.TAG_ENEMY };
+            new HealthComponent(this, 1, Dead);
+            new SpeedComponent(this) { Speed = 60.0f };
         }
 
         private void Dead()

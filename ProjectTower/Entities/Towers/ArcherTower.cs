@@ -47,10 +47,11 @@ namespace ProjectTower.Entities.Towers
                 {
                     if(e.GetComponent<Transform2D>(out var transform) && e.GetComponent<Collider2D>(out var collider) && (collider.Tag & Globals.TAG_ENEMY) > 0)
                     {
-                        if(Vector2.Distance(transform.Position, _transform.Position) <= MAX_DIST)
+                        if(Vector2.Distance(transform.Position, _transform.Position) <= MAX_DIST && e.GetComponent<PathFollower>(out var pf))
                         {
                             _animator.Scale = 1.5f * Vector2.One;
                             Vector2 projectileVel = transform.Position - _transform.Position;
+                            projectileVel += pf.Velocity/2.0f;
                             projectileVel.Normalize();
                             Scene.AddEntity(new MagicBall(_transform.Position.X, _transform.Position.Y, projectileVel * 120.0f));
                             break;
