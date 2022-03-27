@@ -1,4 +1,5 @@
-﻿using HonasGame.Assets;
+﻿using HonasGame;
+using HonasGame.Assets;
 using HonasGame.ECS;
 using HonasGame.ECS.Components;
 using HonasGame.ECS.Components.Physics;
@@ -38,6 +39,11 @@ namespace ProjectTower.Entities.Towers.Projectiles
             if(_collider.CollidesWith(Globals.TAG_ENEMY, out var e) && e.GetComponent<HealthComponent>(out var hp))
             {
                 hp.Health -= 1;
+                Destroy();
+            }
+
+            if(_transform.Position.X <= -16 || _transform.Position.Y <= -16 || _transform.Position.X >= Camera.CameraSize.X + 16 || _transform.Position.Y >= Camera.CameraSize.Y + 16)
+            {
                 Destroy();
             }
 

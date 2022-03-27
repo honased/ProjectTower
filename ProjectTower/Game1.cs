@@ -56,6 +56,7 @@ namespace ProjectTower
             AssetLibrary.AddAsset("mortarTower", Content.Load<Texture2D>("Sprites/MortarTower"));
             AssetLibrary.AddAsset("divineTower", Content.Load<Texture2D>("Sprites/DivineTower"));
             AssetLibrary.AddAsset("magicBall", Content.Load<Texture2D>("Sprites/MagicBall"));
+            AssetLibrary.AddAsset("heart", Content.Load<Texture2D>("Sprites/Heart"));
 
 
             var spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("player"));

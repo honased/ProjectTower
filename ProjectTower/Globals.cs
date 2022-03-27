@@ -6,7 +6,8 @@ namespace ProjectTower
 {
     public static class Globals
     {
-        public static int Money; 
+        public static int Money;
+        public static int Health;
 
         public const uint TAG_NONE =  0;
         public const uint TAG_ENEMY = (1 << 0);
