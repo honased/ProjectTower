@@ -12,6 +12,7 @@ using ProjectTower.Entities.Menus;
 using ProjectTower.Entities.Players;
 using ProjectTower.Entities.Spawner;
 using ProjectTower.Entities.Towers;
+using ProjectTower.Entities.Tutorial;
 
 namespace ProjectTower
 {
@@ -84,6 +85,7 @@ namespace ProjectTower
             AssetLibrary.AddAsset("map_menu", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_menu.json") as JObject));
             AssetLibrary.AddAsset("map_tutorial", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_tutorial.json") as JObject));
             TiledManager.AddSpawnerDefinition("Menu", obj => { return new MainMenu(); });
+            TiledManager.AddSpawnerDefinition("Tutorial", obj => { return new Tutorial(); });
             TiledManager.AddSpawnerDefinition("Player", obj => { return new Player(obj.X, obj.Y); });
             TiledManager.AddSpawnerDefinition("TowerPlot", obj => { return new TowerPlot(obj.X, obj.Y); });
             TiledManager.AddSpawnerDefinition("CollisionBox", obj => { return new CollisionBox(obj.X, obj.Y, obj.Width, obj.Height); });

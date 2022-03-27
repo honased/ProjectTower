@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="54" height="30" tilewidth="12" tileheight="12" infinite="0" nextlayerid="3" nextobjectid="6">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="54" height="30" tilewidth="12" tileheight="12" infinite="0" nextlayerid="3" nextobjectid="9">
+ <editorsettings>
+  <export target="map_tutorial.json" format="json"/>
+ </editorsettings>
  <tileset firstgid="1" source="../Tilesets/tilesetGrass.json"/>
  <layer id="1" name="Tile Layer 1" width="54" height="30">
   <data encoding="csv">
@@ -39,5 +42,17 @@
   <object id="1" template="../Objects/TowerPlot.tx" x="276" y="168"/>
   <object id="2" template="../Objects/TowerPlot.tx" x="372" y="168"/>
   <object id="4" template="../Objects/Player.tx" x="276" y="120"/>
+  <object id="6" name="PathA" type="EnemyPath" x="325.595" y="387.425">
+   <polyline points="0,0 -1.31554,-408.474"/>
+  </object>
+  <object id="7" type="EnemySpawner" x="329.542" y="387.425">
+   <properties>
+    <property name="Path" value="PathA"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="8" type="Tutorial" x="49.9904" y="395.976">
+   <point/>
+  </object>
  </objectgroup>
 </map>
