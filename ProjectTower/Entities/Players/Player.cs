@@ -12,7 +12,8 @@ namespace ProjectTower.Entities.Players
 {
     public class Player : Entity
     {
-        SpriteFont _font;
+        private SpriteFont _font;
+        private Texture2D _textureHeart;
         public Player(float x, float y)
         {
             var t2D = new Transform2D(this) { Position = new Vector2(x, y) };
@@ -24,7 +25,9 @@ namespace ProjectTower.Entities.Players
             new PlayerController(this, t2D, c2D, sr, m2D);
 
             Globals.Money = 225;
+            Globals.Health = 5;
             _font = AssetLibrary.GetAsset<SpriteFont>("fntText");
+            _textureHeart = AssetLibrary.GetAsset<Texture2D>("heart");
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -34,6 +37,12 @@ namespace ProjectTower.Entities.Players
             spriteBatch.DrawFilledRectangle(new Vector2(Camera.CameraSize.X - 5 - bounds.X * 2 - 2, 0), new Vector2(bounds.X * 2 + 7, bounds.Y * 2 + 2), Color.Black);
             spriteBatch.DrawRectangle(new Rectangle((int)Camera.CameraSize.X - 5 - (int)bounds.X * 2 - 2, 0, (int)bounds.X * 2 + 7, (int)bounds.Y * 2 + 2), Color.White, 1.0f);
             spriteBatch.DrawString(_font, str, new Vector2(Camera.CameraSize.X - 5, 3), Color.Yellow, 0.0f, new Vector2(bounds.X, 0), 2.0f, SpriteEffects.None, 0.0f);
+
+            Vector2 startPos = new Vector2(Camera.CameraSize.X / 3.0f, 10);
+            for(int i = 0; i < Globals.Health; i++)
+            {
+                spriteBatch.Draw(_textureHeart, startPos + Vector2.UnitX * i * 8, Color.White);
+            }
 
             base.Draw(gameTime, spriteBatch);
         }
