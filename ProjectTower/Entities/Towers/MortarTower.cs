@@ -40,9 +40,11 @@ namespace ProjectTower.Entities.Towers
 
         private IEnumerator<double> ShootRoutine()
         {
+            float waitTime = 0.1f;
             while (true)
             {
-                yield return 3.0;
+                bool hit = false;
+                yield return waitTime;
                 if (!GetComponent<TowerHealth>(out var th) || !th.IsActive) continue;
                 foreach (Entity e in Scene.GetEntities())
                 {
@@ -52,12 +54,15 @@ namespace ProjectTower.Entities.Towers
                         {
                             _animator.Scale = 1.5f * Vector2.One;
                             Vector2 projectileVel = pf.Velocity / 2.0f;
-                            Scene.AddEntity(new Mortar(transform.Position.X + projectileVel.X, transform.Position.Y + projectileVel.Y));
-                            AssetLibrary.GetAsset<SoundEffect>("Explosion").Play();
+                            Scene.AddEntity(new Mortar(transform.Position.X + projectileVel.X, transform.Position.Y + projectileVel.Y), "MortarTargets");
+                            AssetLibrary.GetAsset<SoundEffect>("MageTowerShot").Play();
+                            hit = true;
                             break;
                         }
                     }
                 }
+
+                waitTime = hit ? 4.0f : 0.1f;
             }
         }
 

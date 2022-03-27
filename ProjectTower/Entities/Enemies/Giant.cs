@@ -21,14 +21,14 @@ namespace ProjectTower.Entities.Enemies
             r2D.CenterOrigin();
 
             new Collider2D(this) { Shape = new BoundingRectangle(27, 30) { Offset = -r2D.Origin }, Transform = t2D, Tag = Globals.TAG_ENEMY };
-            new HealthComponent(this, 150, Dead);
+            new HealthComponent(this, 100, Dead);
             new SpeedComponent(this) { Speed = 15.0f };
             new EnemyThrough(this, t2D);
         }
 
         private void Dead()
         {
-            Globals.Money += 50;
+            Globals.Money += 70;
             AssetLibrary.GetAsset<SoundEffect>("Death").Play();
             Destroy();
         }

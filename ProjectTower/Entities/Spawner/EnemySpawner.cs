@@ -38,11 +38,6 @@ namespace ProjectTower.Entities.Spawner
                 }
             }
 
-            if(Input.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Space))
-            {
-                CreateEnemy<Orc>();
-            }
-
             base.Update(gameTime);
         }
 
@@ -78,7 +73,7 @@ namespace ProjectTower.Entities.Spawner
                 yield return 1.5;
             }
 
-            yield return 4.0;
+            yield return 2.0;
 
             for (i = 0; i < 5; i++)
             {
@@ -86,7 +81,7 @@ namespace ProjectTower.Entities.Spawner
                 yield return 0.3;
             }
 
-            yield return 4.0;
+            yield return 2.0;
 
             for (i = 0; i < 15; i++)
             {
@@ -94,7 +89,7 @@ namespace ProjectTower.Entities.Spawner
                 yield return 0.2;
             }
 
-            yield return 6.0;
+            yield return 3.0;
             for (i = 0; i < 10; i++)
             {
                 CreateEnemy<Orc>();
@@ -105,6 +100,43 @@ namespace ProjectTower.Entities.Spawner
 
             yield return 4.0;
             CreateEnemy<Giant>();
+
+            bool giantExists = true;
+            do
+            {
+                yield return 1.0;
+                giantExists = Scene.GetEntity<Giant>(out var giant);
+            } while (giantExists);
+
+            yield return 1.0;
+
+            for (i = 0; i < 13; i++)
+            {
+                CreateEnemy<Orc>();
+                yield return 0.3;
+                CreateEnemy<Rat>();
+                yield return 0.4;
+            }
+
+            yield return 2.0;
+
+            CreateEnemy<Giant>();
+            for (i = 0; i < 10; i++)
+            {
+                CreateEnemy<Orc>();
+                yield return 0.4;
+            }
+            yield return 1.0;
+            CreateEnemy<Giant>();
+
+            yield return 2.0;
+            for (i = 0; i < 10; i++)
+            {
+                CreateEnemy<Rat>();
+                yield return 0.4;
+            }
+
+            Globals.LastEnemyToGo = true;
         }
 
         private void CreateEnemy<T>() where T : Entity, new()
@@ -115,7 +147,7 @@ namespace ProjectTower.Entities.Spawner
                 new PathFollower(e, t2D, _path.Path, spd.Speed);
             }
 
-            Scene.AddEntity(e);
+            Scene.AddEntity(e, "Enemies");
         }
 
         protected override void Cleanup()

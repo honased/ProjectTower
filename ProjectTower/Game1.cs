@@ -14,6 +14,7 @@ using ProjectTower.Entities.Players;
 using ProjectTower.Entities.Spawner;
 using ProjectTower.Entities.Towers;
 using ProjectTower.Entities.Tutorial;
+using ProjectTower.Particles;
 
 namespace ProjectTower
 {
@@ -58,6 +59,9 @@ namespace ProjectTower
             AssetLibrary.AddAsset("divineTower", Content.Load<Texture2D>("Sprites/DivineTower"));
             AssetLibrary.AddAsset("magicBall", Content.Load<Texture2D>("Sprites/MagicBall"));
             AssetLibrary.AddAsset("heart", Content.Load<Texture2D>("Sprites/Heart"));
+            AssetLibrary.AddAsset("explosion", Content.Load<Texture2D>("Sprites/Explosion"));
+            AssetLibrary.AddAsset("circle", Content.Load<Texture2D>("Sprites/circle"));
+            AssetLibrary.AddAsset("mortarTarget", Content.Load<Texture2D>("Sprites/MortarTarget"));
 
             //soundeffects
             AssetLibrary.AddAsset("Repair", Content.Load<SoundEffect>("SoundEffects/Repair"));
@@ -131,6 +135,8 @@ namespace ProjectTower
                 return ep;
             });
 
+            Scene.AddParticleSystem(new ExplosionParticleSystem(25));
+            Scene.AddParticleSystem(new FireworksParticleSystem(25));
 
             AssetLibrary.GetAsset<TiledMap>("map_menu").Goto();
 

@@ -1,6 +1,7 @@
 ﻿using HonasGame;
 using HonasGame.Assets;
 using HonasGame.ECS;
+using HonasGame.Helper;
 using HonasGame.Rendering;
 using HonasGame.Tiled;
 using Microsoft.Xna.Framework;
@@ -8,20 +9,33 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ProjectTower.Particles;
+using Microsoft.Xna.Framework.Audio;
+using HonasGame.ECS.Components;
 
 namespace ProjectTower.Entities.Menus
 {
-    public class MenuGameOver : Entity
+    public class MenuGameWon : Entity
     {
         private SpriteFont _font;
 
-        public MenuGameOver()
+        public MenuGameWon()
         {
             _font = AssetLibrary.GetAsset<SpriteFont>("fntText");
-            if(Globals.GameWon)
+            var routine = new Coroutine(this, Fireworks());
+            routine.Start();
+
+            routine = new Coroutine(this, Fireworks());
+            routine.Start();
+        }
+
+        private IEnumerator<double> Fireworks()
+        {
+            while(true)
             {
-                Destroy();
-                Scene.AddEntity(new MenuGameWon());
+                yield return RandomHelper.NextFloat(0.2f, 3.0f);
+                Scene.GetParticleSystem<FireworksParticleSystem>().PlaceFirework(RandomHelper.RandomPosition(new Rectangle(0, 0, (int)Camera.CameraSize.X, (int)Camera.CameraSize.Y)));
+                AssetLibrary.GetAsset<SoundEffect>("Explosion").Play();
             }
         }
 
@@ -40,7 +54,7 @@ namespace ProjectTower.Entities.Menus
         {
             spriteBatch.DrawFilledRectangle(Vector2.Zero, Camera.CameraSize, Color.Black);
 
-            var str = "Game Over!";
+            var str = "You won! Congratulations!";
             var bounds = _font.MeasureString(str) / 2.0f;
 
             spriteBatch.DrawString(_font, str, Camera.CameraSize / 2.0f, Color.White, 0.0f, bounds, 2.0f, SpriteEffects.None, 0.0f);

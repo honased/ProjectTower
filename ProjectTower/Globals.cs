@@ -8,6 +8,8 @@ namespace ProjectTower
     {
         public static int Money;
         public static int Health;
+        public static bool GameWon;
+        public static bool LastEnemyToGo;
 
         public const uint TAG_NONE =  0;
         public const uint TAG_ENEMY = (1 << 0);

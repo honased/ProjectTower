@@ -41,7 +41,7 @@ namespace ProjectTower.Entities.Menus
                 if(_MenuSelection)
                 {
                     //scene transition here to game
-                    AssetLibrary.GetAsset<TiledMap>("map_0_0").Goto();
+                    Scene.AddEntity(new RoomTransition("map_0_0"));
                 }
                 else
                 {

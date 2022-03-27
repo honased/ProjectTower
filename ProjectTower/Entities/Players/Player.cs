@@ -27,6 +27,8 @@ namespace ProjectTower.Entities.Players
 
             Globals.Money = 225;
             Globals.Health = 5;
+            Globals.GameWon = false;
+            Globals.LastEnemyToGo = false;
             _font = AssetLibrary.GetAsset<SpriteFont>("fntText");
             _textureHeart = AssetLibrary.GetAsset<Texture2D>("heart");
         }
@@ -35,7 +37,31 @@ namespace ProjectTower.Entities.Players
         {
             if(Globals.Health <= 0)
             {
-                //AssetLibrary.GetAsset<TiledMap>("map_game_over").Goto();
+                if (!Scene.GetEntity<RoomTransition>(out var rt))
+                {
+                    Globals.GameWon = false;
+                    Scene.AddEntity(new RoomTransition("map_game_over"));
+                }
+            }
+            else if(Globals.LastEnemyToGo)
+            {
+                if (!Scene.GetEntity<RoomTransition>(out var rt))
+                {
+                    bool foundEnemy = false;
+                    foreach (Entity e in Scene.GetEntities())
+                    {
+                        if (e.GetComponent<Collider2D>(out var c2D) && (c2D.Tag & Globals.TAG_ENEMY) > 0)
+                        {
+                            foundEnemy = true;
+                        }
+                    }
+
+                    if (!foundEnemy)
+                    {
+                        Globals.GameWon = true;
+                        Scene.AddEntity(new RoomTransition("map_game_over"));
+                    }
+                }
             }
 
             base.Update(gameTime);
