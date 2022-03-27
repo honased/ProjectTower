@@ -42,7 +42,7 @@ namespace ProjectTower.Entities.Towers
         {
             while (true)
             {
-                yield return 4.0;
+                yield return 3.0;
                 if (!GetComponent<TowerHealth>(out var th) || !th.IsActive) continue;
                 foreach (Entity e in Scene.GetEntities())
                 {

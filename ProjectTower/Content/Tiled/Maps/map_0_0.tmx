@@ -87,7 +87,7 @@
   </object>
   <object id="33" type="TowerShop" x="24" y="253" width="28.3636" height="8.875">
    <properties>
-    <property name="Cost" type="int" value="400"/>
+    <property name="Cost" type="int" value="225"/>
     <property name="TowerType" value="Divine Tower"/>
    </properties>
   </object>

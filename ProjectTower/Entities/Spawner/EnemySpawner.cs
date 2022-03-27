@@ -70,27 +70,41 @@ namespace ProjectTower.Entities.Spawner
                 yield return 0.8;
             }
 
+            yield return 4.0;
+
             for (i = 0; i < 2; i++)
             {
                 CreateEnemy<Rat>();
                 yield return 1.5;
             }
 
-            for (i = 0; i < 25; i++)
+            yield return 4.0;
+
+            for (i = 0; i < 5; i++)
             {
                 CreateEnemy<Rat>();
                 yield return 0.3;
             }
 
-            for (i = 0; i < 25; i++)
+            yield return 4.0;
+
+            for (i = 0; i < 15; i++)
             {
                 CreateEnemy<Rat>();
-                CreateEnemy<Orc>();
                 yield return 0.2;
-                CreateEnemy<Rat>();
-                yield return 0.1;
             }
 
+            yield return 6.0;
+            for (i = 0; i < 10; i++)
+            {
+                CreateEnemy<Orc>();
+                yield return 0.5;
+                CreateEnemy<Rat>();
+                yield return 0.8;
+            }
+
+            yield return 4.0;
+            CreateEnemy<Giant>();
         }
 
         private void CreateEnemy<T>() where T : Entity, new()

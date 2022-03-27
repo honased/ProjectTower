@@ -42,7 +42,7 @@ namespace ProjectTower.Entities.Towers.Projectiles
                 {
                     if(e.GetComponent<Transform2D>(out var tf) && e.GetComponent<Collider2D>(out var c2D) && (c2D.Tag & Globals.TAG_ENEMY) > 0)
                     {
-                        if(Vector2.Distance(_transform.Position, tf.Position) < 33.0f && e.GetComponent<HealthComponent>(out var hp))
+                        if(Vector2.Distance(_transform.Position, tf.Position) < 55.0f && e.GetComponent<HealthComponent>(out var hp))
                         {
                             hp.Damage(5);
                             AssetLibrary.GetAsset<SoundEffect>("EnemyHit").Play();
