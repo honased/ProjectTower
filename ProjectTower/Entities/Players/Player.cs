@@ -23,7 +23,7 @@ namespace ProjectTower.Entities.Players
             var m2D = new Mover2D(this);
             new PlayerController(this, t2D, c2D, sr, m2D);
 
-            Globals.Money = 100;
+            Globals.Money = 225;
             _font = AssetLibrary.GetAsset<SpriteFont>("fntText");
         }
 

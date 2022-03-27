@@ -311,6 +311,86 @@
                  "width":12,
                  "x":12,
                  "y":312
+                }, 
+                {
+                 "gid":7,
+                 "height":24,
+                 "id":31,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Sprite",
+                         "type":"string",
+                         "value":"sprMortarTower"
+                        }],
+                 "rotation":0,
+                 "type":"TowerDisplay",
+                 "visible":true,
+                 "width":12,
+                 "x":12,
+                 "y":276
+                }, 
+                {
+                 "height":8.875,
+                 "id":32,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Cost",
+                         "type":"int",
+                         "value":150
+                        }, 
+                        {
+                         "name":"TowerType",
+                         "type":"string",
+                         "value":"Mortar Tower"
+                        }],
+                 "rotation":0,
+                 "type":"TowerShop",
+                 "visible":true,
+                 "width":28.3636,
+                 "x":24,
+                 "y":289
+                }, 
+                {
+                 "height":8.875,
+                 "id":33,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Cost",
+                         "type":"int",
+                         "value":150
+                        }, 
+                        {
+                         "name":"TowerType",
+                         "type":"string",
+                         "value":"Divine Tower"
+                        }],
+                 "rotation":0,
+                 "type":"TowerShop",
+                 "visible":true,
+                 "width":28.3636,
+                 "x":24,
+                 "y":253
+                }, 
+                {
+                 "gid":7,
+                 "height":24,
+                 "id":35,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Sprite",
+                         "type":"string",
+                         "value":"sprDivineTower"
+                        }],
+                 "rotation":0,
+                 "type":"TowerDisplay",
+                 "visible":true,
+                 "width":12,
+                 "x":12,
+                 "y":240
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -397,7 +477,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":31,
+ "nextobjectid":36,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.2",

@@ -53,6 +53,8 @@ namespace ProjectTower
             AssetLibrary.AddAsset("backgroundMenu", Content.Load<Texture2D>("Sprites/BackgroundMenu"));
             AssetLibrary.AddAsset("towerPlot", Content.Load<Texture2D>("Sprites/TowerPlot"));
             AssetLibrary.AddAsset("archerTower", Content.Load<Texture2D>("Sprites/ArcherTower"));
+            AssetLibrary.AddAsset("mortarTower", Content.Load<Texture2D>("Sprites/MortarTower"));
+            AssetLibrary.AddAsset("divineTower", Content.Load<Texture2D>("Sprites/DivineTower"));
             AssetLibrary.AddAsset("magicBall", Content.Load<Texture2D>("Sprites/MagicBall"));
 
 
@@ -79,6 +81,14 @@ namespace ProjectTower
             spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("archerTower"));
             spr.Animations.Add("default", SpriteAnimation.FromSpritesheet(1, 0.0, 0, 0, 12, 24));
             AssetLibrary.AddAsset("sprArcherTower", spr);
+
+            spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("mortarTower"));
+            spr.Animations.Add("default", SpriteAnimation.FromSpritesheet(1, 0.0, 0, 0, 12, 24));
+            AssetLibrary.AddAsset("sprMortarTower", spr);
+
+            spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("divineTower"));
+            spr.Animations.Add("default", SpriteAnimation.FromSpritesheet(1, 0.0, 0, 0, 12, 24));
+            AssetLibrary.AddAsset("sprDivineTower", spr);
 
             AssetLibrary.AddAsset("tilesetGrass", new TiledTileset(JSON.FromFile("Content/Tiled/Tilesets/tilesetGrass.json") as JObject));
             AssetLibrary.AddAsset("map_0_0", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_0_0.json") as JObject));

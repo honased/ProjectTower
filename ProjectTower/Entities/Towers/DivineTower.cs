@@ -13,16 +13,16 @@ using System.Text;
 
 namespace ProjectTower.Entities.Towers
 {
-    public class ArcherTower : Entity
+    public class DivineTower : Entity
     {
         private Transform2D _transform;
         private const float MAX_DIST = 100.0f;
         private ScaleAnimator _animator;
 
-        public ArcherTower(float x, float y)
+        public DivineTower(float x, float y)
         {
             var t2D = new Transform2D(this) { Position = new Vector2(x, y) };
-            var r2D = new SpriteRenderer(this) { Sprite = AssetLibrary.GetAsset<Sprite>("sprArcherTower"), Animation = "default" };
+            var r2D = new SpriteRenderer(this) { Sprite = AssetLibrary.GetAsset<Sprite>("sprDivineTower"), Animation = "default" };
             _animator = new ScaleAnimator(this, Vector2.One, r2D);
 
             new TowerHealth(this, t2D, new HealthComponent(this, 100));
@@ -41,7 +41,7 @@ namespace ProjectTower.Entities.Towers
         {
             while(true)
             {
-                yield return 1.0;
+                yield return 0.25;
                 if (!GetComponent<TowerHealth>(out var th) || !th.IsActive) continue;
                 foreach (Entity e in Scene.GetEntities())
                 {
@@ -53,7 +53,7 @@ namespace ProjectTower.Entities.Towers
                             Vector2 projectileVel = transform.Position - _transform.Position;
                             projectileVel += pf.Velocity/2.0f;
                             projectileVel.Normalize();
-                            Scene.AddEntity(new MagicBall(_transform.Position.X, _transform.Position.Y, projectileVel * 120.0f));
+                            Scene.AddEntity(new MagicBall(_transform.Position.X, _transform.Position.Y, projectileVel * 180.0f));
                             break;
                         }
                     }
