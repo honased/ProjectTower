@@ -26,7 +26,7 @@ namespace ProjectTower.Entities.Towers
             var r2D = new SpriteRenderer(this) { Sprite = AssetLibrary.GetAsset<Sprite>("sprDivineTower"), Animation = "default" };
             _animator = new ScaleAnimator(this, Vector2.One, r2D);
 
-            new TowerHealth(this, t2D, new HealthComponent(this, 100));
+            new TowerHealth(this, t2D, new HealthComponent(this, 62));
 
             _transform = t2D;
 

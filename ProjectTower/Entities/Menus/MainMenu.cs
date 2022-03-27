@@ -3,6 +3,7 @@ using HonasGame.Assets;
 using HonasGame.ECS;
 using HonasGame.ECS.Components;
 using HonasGame.Rendering;
+using HonasGame.Tiled;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -40,9 +41,7 @@ namespace ProjectTower.Entities.Menus
                 if(_MenuSelection)
                 {
                     //scene transition here to game
-                    
-                    
-
+                    AssetLibrary.GetAsset<TiledMap>("map_0_0").Goto();
                 }
                 else
                 {

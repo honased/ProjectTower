@@ -23,12 +23,13 @@ namespace ProjectTower.Entities.Enemies
             new Collider2D(this) { Shape = new BoundingRectangle(16, 16) { Offset = -r2D.Origin }, Transform = t2D, Tag = Globals.TAG_ENEMY };
             new HealthComponent(this, 1, Dead);
             new SpeedComponent(this) { Speed = 60.0f };
+            new EnemyThrough(this, t2D);
         }
 
         private void Dead()
         {
-            Globals.Money += 12;
             AssetLibrary.GetAsset<SoundEffect>("Death").Play();
+            Globals.Money += 6;
             Destroy();
         }
 

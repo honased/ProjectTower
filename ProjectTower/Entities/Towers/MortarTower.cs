@@ -26,7 +26,7 @@ namespace ProjectTower.Entities.Towers
             var r2D = new SpriteRenderer(this) { Sprite = AssetLibrary.GetAsset<Sprite>("sprMortarTower"), Animation = "default" };
             _animator = new ScaleAnimator(this, Vector2.One, r2D);
 
-            new TowerHealth(this, t2D, new HealthComponent(this, 125));
+            new TowerHealth(this, t2D, new HealthComponent(this, 38));
 
             _transform = t2D;
 
@@ -42,7 +42,7 @@ namespace ProjectTower.Entities.Towers
         {
             while (true)
             {
-                yield return 3.0;
+                yield return 4.0;
                 if (!GetComponent<TowerHealth>(out var th) || !th.IsActive) continue;
                 foreach (Entity e in Scene.GetEntities())
                 {

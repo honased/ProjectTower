@@ -108,7 +108,9 @@ namespace ProjectTower
             AssetLibrary.AddAsset("map_0_0", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_0_0.json") as JObject));
             AssetLibrary.AddAsset("map_menu", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_menu.json") as JObject));
             AssetLibrary.AddAsset("map_tutorial", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_tutorial.json") as JObject));
+            AssetLibrary.AddAsset("map_game_over", new TiledMap(JSON.FromFile("Content/Tiled/Maps/map_game_over.json") as JObject));
             TiledManager.AddSpawnerDefinition("Menu", obj => { return new MainMenu(); });
+            TiledManager.AddSpawnerDefinition("GameOver", obj => { return new MenuGameOver(); });
             TiledManager.AddSpawnerDefinition("Tutorial", obj => { return new Tutorial(); });
             TiledManager.AddSpawnerDefinition("Player", obj => { return new Player(obj.X, obj.Y); });
             TiledManager.AddSpawnerDefinition("TowerPlot", obj => { return new TowerPlot(obj.X, obj.Y); });
@@ -130,7 +132,7 @@ namespace ProjectTower
             });
 
 
-            AssetLibrary.GetAsset<TiledMap>("map_0_0").Goto();
+            AssetLibrary.GetAsset<TiledMap>("map_menu").Goto();
 
             //font
             AssetLibrary.AddAsset("fntText", Content.Load<SpriteFont>("fonts/fntText"));

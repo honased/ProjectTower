@@ -49,15 +49,48 @@ namespace ProjectTower.Entities.Spawner
         private IEnumerator<double> EnemyRoutine()
         {
             int i;
-            yield return 1.0;
-            for(i = 0; i < 3; i++)
+            yield return 5.0;
+            for(i = 0; i < 6; i++)
             {
                 CreateEnemy<Orc>();
-                yield return 1.0;
+                yield return 4.2;
             }
 
-            CreateEnemy<Rat>();
-            CreateEnemy<Giant>();
+            for (i = 0; i < 6; i++)
+            {
+                CreateEnemy<Orc>();
+                yield return 1.2;
+                CreateEnemy<Orc>();
+                yield return 3.5;
+            }
+
+            for (i = 0; i < 8; i++)
+            {
+                CreateEnemy<Orc>();
+                yield return 0.8;
+            }
+
+            for (i = 0; i < 2; i++)
+            {
+                CreateEnemy<Rat>();
+                yield return 1.5;
+            }
+
+            for (i = 0; i < 25; i++)
+            {
+                CreateEnemy<Rat>();
+                yield return 0.3;
+            }
+
+            for (i = 0; i < 25; i++)
+            {
+                CreateEnemy<Rat>();
+                CreateEnemy<Orc>();
+                yield return 0.2;
+                CreateEnemy<Rat>();
+                yield return 0.1;
+            }
+
         }
 
         private void CreateEnemy<T>() where T : Entity, new()

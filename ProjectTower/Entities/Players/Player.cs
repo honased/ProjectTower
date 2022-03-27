@@ -7,6 +7,7 @@ using HonasGame.ECS.Components.Physics;
 using ProjectTower.Components;
 using Microsoft.Xna.Framework.Graphics;
 using HonasGame;
+using HonasGame.Tiled;
 
 namespace ProjectTower.Entities.Players
 {
@@ -28,6 +29,16 @@ namespace ProjectTower.Entities.Players
             Globals.Health = 5;
             _font = AssetLibrary.GetAsset<SpriteFont>("fntText");
             _textureHeart = AssetLibrary.GetAsset<Texture2D>("heart");
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if(Globals.Health <= 0)
+            {
+                //AssetLibrary.GetAsset<TiledMap>("map_game_over").Goto();
+            }
+
+            base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
