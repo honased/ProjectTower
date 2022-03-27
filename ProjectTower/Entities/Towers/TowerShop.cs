@@ -4,6 +4,7 @@ using HonasGame.ECS;
 using HonasGame.ECS.Components;
 using HonasGame.ECS.Components.Physics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using ProjectTower.Components;
 using ProjectTower.Entities.Players;
 using System;
@@ -36,20 +37,23 @@ namespace ProjectTower.Entities.Towers
                 {
                     string towerSprite = "";
                     Globals.Money -= _cost;
-                    switch(_towerType)
+                    switch (_towerType)
                     {
                         case "Mage Tower":
                             towerSprite = "sprArcherTower";
+                            AssetLibrary.GetAsset<SoundEffect>("TowerBought").Play();
                             _cost += 50;
                             break;
 
                         case "Mortar Tower":
                             towerSprite = "sprMortarTower";
+                            AssetLibrary.GetAsset<SoundEffect>("TowerBought").Play();
                             _cost += 50;
                             break;
 
                         case "Divine Tower":
                             towerSprite = "sprDivineTower";
+                            AssetLibrary.GetAsset<SoundEffect>("TowerBought").Play();
                             _cost += 50;
                             break;
 
@@ -58,6 +62,10 @@ namespace ProjectTower.Entities.Towers
                     }
                     TowerPickup pickup = new TowerPickup(player, towerSprite, _towerType);
                     _pm.Message = $"Buy {_towerType} for {_cost} [Press 'E']";
+                }
+                else if (_pm.Active && Input.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.E) && Globals.Money < _cost)
+                {
+                    AssetLibrary.GetAsset<SoundEffect>("CantBuy").Play();
                 }
             }
 

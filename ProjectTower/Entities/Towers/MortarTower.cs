@@ -4,6 +4,7 @@ using HonasGame.ECS.Components;
 using HonasGame.ECS.Components.Physics;
 using HonasGame.Rendering;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using ProjectTower.Components;
 using ProjectTower.Entities.Towers.Projectiles;
@@ -52,6 +53,7 @@ namespace ProjectTower.Entities.Towers
                             _animator.Scale = 1.5f * Vector2.One;
                             Vector2 projectileVel = pf.Velocity / 2.0f;
                             Scene.AddEntity(new Mortar(transform.Position.X + projectileVel.X, transform.Position.Y + projectileVel.Y));
+                            AssetLibrary.GetAsset<SoundEffect>("Explosion").Play();
                             break;
                         }
                     }

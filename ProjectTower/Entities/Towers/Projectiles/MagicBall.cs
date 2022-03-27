@@ -5,6 +5,7 @@ using HonasGame.ECS.Components;
 using HonasGame.ECS.Components.Physics;
 using HonasGame.Rendering;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using ProjectTower.Components;
 using System;
@@ -38,6 +39,7 @@ namespace ProjectTower.Entities.Towers.Projectiles
 
             if(_collider.CollidesWith(Globals.TAG_ENEMY, out var e) && e.GetComponent<HealthComponent>(out var hp))
             {
+                AssetLibrary.GetAsset<SoundEffect>("EnemyHit").Play();
                 hp.Health -= 1;
                 Destroy();
             }

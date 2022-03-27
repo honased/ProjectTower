@@ -4,6 +4,7 @@ using HonasGame.ECS;
 using HonasGame.ECS.Components;
 using HonasGame.ECS.Components.Physics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using ProjectTower.Components;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace ProjectTower.Entities.Enemies
         private void Dead()
         {
             Globals.Money += 12;
+            AssetLibrary.GetAsset<SoundEffect>("Death").Play();
             Destroy();
         }
 

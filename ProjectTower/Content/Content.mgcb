@@ -20,6 +20,66 @@
 /processorParam:TextureFormat=Compressed
 /build:fonts/fntText.spritefont
 
+#begin SoundEffects/CantBuy.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/CantBuy.wav
+
+#begin SoundEffects/Death.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Death.wav
+
+#begin SoundEffects/EnemyHit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/EnemyHit.wav
+
+#begin SoundEffects/EnemyThorugh.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/EnemyThorugh.wav
+
+#begin SoundEffects/Explosion.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Explosion.wav
+
+#begin SoundEffects/LaserShoot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/LaserShoot.wav
+
+#begin SoundEffects/MageTowerShot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/MageTowerShot.wav
+
+#begin SoundEffects/Repair.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Repair.wav
+
+#begin SoundEffects/TowerBought.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/TowerBought.wav
+
+#begin SoundEffects/TowerPlace.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/TowerPlace.wav
+
 #begin Sprites/ArcherTower.png
 /importer:TextureImporter
 /processor:TextureProcessor

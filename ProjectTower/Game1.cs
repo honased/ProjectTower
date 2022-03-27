@@ -4,6 +4,7 @@ using HonasGame.ECS;
 using HonasGame.JSON;
 using HonasGame.Tiled;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ProjectTower.Entities;
@@ -57,6 +58,18 @@ namespace ProjectTower
             AssetLibrary.AddAsset("divineTower", Content.Load<Texture2D>("Sprites/DivineTower"));
             AssetLibrary.AddAsset("magicBall", Content.Load<Texture2D>("Sprites/MagicBall"));
             AssetLibrary.AddAsset("heart", Content.Load<Texture2D>("Sprites/Heart"));
+
+            //soundeffects
+            AssetLibrary.AddAsset("Repair", Content.Load<SoundEffect>("SoundEffects/Repair"));
+            AssetLibrary.AddAsset("CantBuy", Content.Load<SoundEffect>("SoundEffects/CantBuy"));
+            AssetLibrary.AddAsset("Death", Content.Load<SoundEffect>("SoundEffects/Death"));
+            AssetLibrary.AddAsset("EnemyHit", Content.Load<SoundEffect>("SoundEffects/EnemyHit"));
+            AssetLibrary.AddAsset("EnemyThorugh", Content.Load<SoundEffect>("SoundEffects/EnemyThorugh"));
+            AssetLibrary.AddAsset("Explosion", Content.Load<SoundEffect>("SoundEffects/Explosion"));
+            AssetLibrary.AddAsset("LaserShoot", Content.Load<SoundEffect>("SoundEffects/LaserShoot"));
+            AssetLibrary.AddAsset("MageTowerShot", Content.Load<SoundEffect>("SoundEffects/MageTowerShot"));
+            AssetLibrary.AddAsset("TowerBought", Content.Load<SoundEffect>("SoundEffects/TowerBought"));
+            AssetLibrary.AddAsset("TowerPlace", Content.Load<SoundEffect>("SoundEffects/TowerPlace"));
 
 
             var spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("player"));

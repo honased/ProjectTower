@@ -5,6 +5,7 @@ using HonasGame.ECS.Components.Physics;
 using HonasGame.Helper;
 using HonasGame.Rendering;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using ProjectTower.Components;
 using System;
@@ -44,6 +45,7 @@ namespace ProjectTower.Entities.Towers.Projectiles
                         if(Vector2.Distance(_transform.Position, tf.Position) < 75.0f && e.GetComponent<HealthComponent>(out var hp))
                         {
                             hp.Damage(5);
+                            AssetLibrary.GetAsset<SoundEffect>("EnemyHit").Play();
                         }
                     }
                 }

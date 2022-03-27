@@ -10,6 +10,8 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using HonasGame.Helper;
 using ProjectTower.Entities.Towers;
+using HonasGame.Assets;
+using Microsoft.Xna.Framework.Audio;
 
 namespace ProjectTower.Components
 {
@@ -77,6 +79,7 @@ namespace ProjectTower.Components
                             default:
                                 throw new Exception();
                         }
+                        AssetLibrary.GetAsset<SoundEffect>("TowerPlace").Play();
                         Scene.AddEntity(addEnt);
                         tp.Destroy();
                         Parent.RemoveComponent(towerPickup);
@@ -85,6 +88,7 @@ namespace ProjectTower.Components
                 else if((tag & Globals.TAG_TOWER) > 0 && e.GetComponent<HealthComponent>(out var hp) && Input.IsKeyPressed(Keys.E))
                 {
                     hp.Health += 10;
+                    AssetLibrary.GetAsset<SoundEffect>("Repair").Play();
                 }
             }
 

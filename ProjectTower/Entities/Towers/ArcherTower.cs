@@ -4,6 +4,7 @@ using HonasGame.ECS.Components;
 using HonasGame.ECS.Components.Physics;
 using HonasGame.Rendering;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using ProjectTower.Components;
 using ProjectTower.Entities.Towers.Projectiles;
@@ -54,6 +55,7 @@ namespace ProjectTower.Entities.Towers
                             projectileVel += pf.Velocity/2.0f;
                             projectileVel.Normalize();
                             Scene.AddEntity(new MagicBall(_transform.Position.X, _transform.Position.Y, projectileVel * 120.0f));
+                            AssetLibrary.GetAsset<SoundEffect>("MageTowerShot").Play();
                             break;
                         }
                     }
