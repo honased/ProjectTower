@@ -1,6 +1,8 @@
-﻿using HonasGame.ECS;
+﻿using HonasGame.Assets;
+using HonasGame.ECS;
 using HonasGame.ECS.Components;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,6 +23,7 @@ namespace ProjectTower.Components
             if(_transform.Position.Y < - 32.0f)
             {
                 Parent.Destroy();
+                AssetLibrary.GetAsset<SoundEffect>("EnemyThorugh").Play();
                 Globals.Health -= 1;
             }
         }
