@@ -26,6 +26,7 @@ namespace ProjectTower.Entities.Enemies
 
         private void Dead()
         {
+            Globals.Money += 15;
             Destroy();
         }
 

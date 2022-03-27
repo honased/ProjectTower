@@ -20,12 +20,13 @@ namespace ProjectTower.Entities.Enemies
             r2D.CenterOrigin();
 
             new Collider2D(this) { Shape = new BoundingRectangle(27, 30) { Offset = -r2D.Origin }, Transform = t2D, Tag = Globals.TAG_ENEMY };
-            new HealthComponent(this, 100, Dead);
+            new HealthComponent(this, 10, Dead);
             new SpeedComponent(this) { Speed = 15.0f };
         }
 
         private void Dead()
         {
+            Globals.Money += 50;
             Destroy();
         }
 
