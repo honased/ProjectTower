@@ -1,0 +1,3 @@
+Content/Sprites/ArcherTower.png - created by Eric Honas for this game, released under public domain
+
+Content/PX Garamond/PX Garamond Regular.ttf - PX Garamond Regular font created by Tristan Dannenberg, released on Github (https://github.com/teryror/pixel-fonts) under the Open Font License
