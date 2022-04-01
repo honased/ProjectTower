@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using ProjectTower.Entities;
 using ProjectTower.Entities.Enemies;
 using ProjectTower.Entities.Menus;
@@ -29,9 +30,9 @@ namespace ProjectTower
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            _graphics.PreferredBackBufferWidth = 1280;
-            _graphics.PreferredBackBufferHeight = 720;
-            //_graphics.IsFullScreen = true;
+            _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            _graphics.IsFullScreen = true;
 
             Camera.CameraSize = new Vector2(640, 360);
         }
@@ -74,6 +75,7 @@ namespace ProjectTower
             AssetLibrary.AddAsset("MageTowerShot", Content.Load<SoundEffect>("SoundEffects/MageTowerShot"));
             AssetLibrary.AddAsset("TowerBought", Content.Load<SoundEffect>("SoundEffects/TowerBought"));
             AssetLibrary.AddAsset("TowerPlace", Content.Load<SoundEffect>("SoundEffects/TowerPlace"));
+            AssetLibrary.AddAsset("Cattle", Content.Load<Song>("SoundEffects/Cattle"));
 
 
             var spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("player"));
@@ -151,12 +153,6 @@ namespace ProjectTower
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
-            if(Input.IsKeyPressed(Keys.R))
-            {
-                AssetLibrary.GetAsset<TiledMap>("map_0_0").Goto();
-            }
 
             Scene.Update(gameTime);
 

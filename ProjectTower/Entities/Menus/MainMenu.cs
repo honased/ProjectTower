@@ -34,7 +34,7 @@ namespace ProjectTower.Entities.Menus
         {
             if(Input.IsKeyPressed(Keys.D) || Input.IsKeyPressed(Keys.Right) || Input.IsButtonPressed(Buttons.DPadRight)||Input.CheckAnalogPressed(true, true, 1)) _MenuSelection = false;
             if( Input.IsKeyPressed(Keys.A) || Input.IsKeyPressed(Keys.LeftShift) || Input.IsButtonPressed(Buttons.DPadLeft) || Input.CheckAnalogPressed(true, true, -1)) _MenuSelection = true;
-            var choice = Input.IsKeyPressed(Keys.Space) || Input.IsKeyPressed(Keys.Enter) || Input.IsButtonPressed(Buttons.A);
+            var choice = Input.IsKeyPressed(Keys.Space) || Input.IsKeyPressed(Keys.Enter) || Input.IsButtonPressed(Buttons.A) || Input.IsKeyPressed(Keys.E);
 
             if(choice)
             {
