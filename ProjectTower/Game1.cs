@@ -30,9 +30,9 @@ namespace ProjectTower
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            _graphics.IsFullScreen = true;
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.IsFullScreen = false;
 
             Camera.CameraSize = new Vector2(640, 360);
         }
@@ -75,8 +75,6 @@ namespace ProjectTower
             AssetLibrary.AddAsset("MageTowerShot", Content.Load<SoundEffect>("SoundEffects/MageTowerShot"));
             AssetLibrary.AddAsset("TowerBought", Content.Load<SoundEffect>("SoundEffects/TowerBought"));
             AssetLibrary.AddAsset("TowerPlace", Content.Load<SoundEffect>("SoundEffects/TowerPlace"));
-            AssetLibrary.AddAsset("Cattle", Content.Load<Song>("SoundEffects/Cattle"));
-
 
             var spr = new Sprite(AssetLibrary.GetAsset<Texture2D>("player"));
             spr.Animations.Add("default", SpriteAnimation.FromSpritesheet(1, 0.0, 0, 0, 16, 24));
