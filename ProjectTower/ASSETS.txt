@@ -1,3 +1,21 @@
 Content/Sprites/ArcherTower.png - created by Eric Honas for this game, released under public domain
 
 Content/PX Garamond/PX Garamond Regular.ttf - PX Garamond Regular font created by Tristan Dannenberg, released on Github (https://github.com/teryror/pixel-fonts) under the Open Font License
+
+Content/SoundEffects/CantBuy.wav - created by Mason Wittman for this game, released under public domain
+
+Content/SoundEffects/Death.wav - created by Mason Wittman for this game, released under public domain
+
+Content/SoundEffects/EnemyHit.wav - created by Mason Wittman for this game, released under public domain
+
+Content/SoundEffects/Explosion.wav - created by Mason Wittman for this game, released under public domain
+
+Content/SoundEffects/LaserShoot.wav - created by Mason Wittman for this game, released under public domain
+
+Content/SoundEffects/MageTowerShot.wav - created by Mason Wittman for this game, released under public domain
+
+Content/SoundEffects/Repair.wav - created by Mason Wittman for this game, released under public domain
+
+Content/SoundEffects/TowerBought.wav - created by Mason Wittman for this game, released under public domain
+
+Content/SoundEffects/TowerPlace.wav - created by Mason Wittman for this game, released under public domain
