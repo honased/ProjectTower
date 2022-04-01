@@ -32,9 +32,6 @@ namespace ProjectTower.Entities.Players
             Globals.LastEnemyToGo = false;
             _font = AssetLibrary.GetAsset<SpriteFont>("fntText");
             _textureHeart = AssetLibrary.GetAsset<Texture2D>("heart");
-            MediaPlayer.Play(AssetLibrary.GetAsset<Song>("Cattle"));
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = 0.15f;
         }
 
         public override void Update(GameTime gameTime)
