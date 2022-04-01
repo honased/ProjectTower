@@ -1,6 +1,32 @@
 Content/Sprites/ArcherTower.png - created by Eric Honas for this game, released under public domain
 
-Content/PX Garamond/PX Garamond Regular.ttf - PX Garamond Regular font created by Tristan Dannenberg, released on Github (https://github.com/teryror/pixel-fonts) under the Open Font License
+Content/Sprites/BackgroundMenu.png - created by Eric Honas for this game, released under public domain
+
+Content/Sprites/circle.png - created by Eric Honas for this game, released under public domain
+
+Content/Sprites/DivineTower.png - created by Eric Honas for this game, released under public domain
+
+Content/Sprites/Explosion.png - created by Eric Honas for this game, released under public domain
+
+Content/Sprites/Giant.png - created by Eric Honas for this game, released under public domain
+
+Content/Sprites/Heart.png - created by Eric Honas for this game, released under public domain
+
+Content/Sprites/MagicBall.png - created by Eric Honas for this game, released under public domain
+
+Content/Sprites/MortarTarget.png - created by Eric Honas for this game, released under public domain
+
+Content/Sprites/MortarTower.png - created by Eric Honas for this game, released under public domain
+
+Content/Sprites/Orc.png - created by Eric Honas for this game, released under public domain
+
+Content/Sprites/Player.png - created by Eric Honas for this game, released under public domain
+
+Content/Sprites/Rat.png - created by Eric Honas for this game, released under public domain
+
+Content/Sprites/TowerPlot.png - created by Eric Honas for this game, released under public domain
+
+Content/Tiled/Tilesets/tileGrass.png - created by Eric Honas for this game, released under public domain
 
 Content/SoundEffects/CantBuy.wav - created by Mason Wittman for this game, released under public domain
 
@@ -19,3 +45,5 @@ Content/SoundEffects/Repair.wav - created by Mason Wittman for this game, releas
 Content/SoundEffects/TowerBought.wav - created by Mason Wittman for this game, released under public domain
 
 Content/SoundEffects/TowerPlace.wav - created by Mason Wittman for this game, released under public domain
+
+Content/PX Garamond/PX Garamond Regular.ttf - PX Garamond Regular font created by Tristan Dannenberg, released on Github (https://github.com/teryror/pixel-fonts) under the Open Font License
