@@ -38,10 +38,10 @@ namespace ProjectTower.Components
         {
             float t = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            var right = Input.IsKeyDown(Keys.Right) || Input.IsKeyDown(Keys.D) || Input.CheckAnalogDirection(true, true, 1);
-            var left = Input.IsKeyDown(Keys.Left) || Input.IsKeyDown(Keys.A) || Input.CheckAnalogDirection(true, true, -1);
-            var up = Input.IsKeyDown(Keys.Up) || Input.IsKeyDown(Keys.W) || Input.CheckAnalogDirection(true, false, -1);
-            var down = Input.IsKeyDown(Keys.Down) || Input.IsKeyDown(Keys.S) || Input.CheckAnalogDirection(true, false, 1);
+            var right = Input.IsKeyDown(Keys.Right) || Input.IsKeyDown(Keys.D) || Input.CheckAnalogDirection(true, true, 1) || Input.IsButtonDown(Buttons.DPadRight);
+            var left = Input.IsKeyDown(Keys.Left) || Input.IsKeyDown(Keys.A) || Input.CheckAnalogDirection(true, true, -1) || Input.IsButtonDown(Buttons.DPadLeft);
+            var up = Input.IsKeyDown(Keys.Up) || Input.IsKeyDown(Keys.W) || Input.CheckAnalogDirection(true, false, -1) || Input.IsButtonDown(Buttons.DPadUp);
+            var down = Input.IsKeyDown(Keys.Down) || Input.IsKeyDown(Keys.S) || Input.CheckAnalogDirection(true, false, 1) || Input.IsButtonDown(Buttons.DPadDown);
             var ePressed = Input.IsKeyPressed(Keys.E) || Input.IsButtonPressed(Buttons.A);
 
             int vx = ((right ? 1 : 0) - (left ? 1 : 0));
