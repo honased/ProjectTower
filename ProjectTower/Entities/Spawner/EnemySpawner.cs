@@ -44,7 +44,20 @@ namespace ProjectTower.Entities.Spawner
         private IEnumerator<double> EnemyRoutine()
         {
             int i;
-            yield return 5.0;
+            bool towerPlacedYet = false;
+            while(!towerPlacedYet)
+            {
+                foreach(Entity e in Scene.GetEntities())
+                {
+                    if(e.GetComponent<Collider2D>(out var collider) && (collider.Tag & Globals.TAG_TOWER) > 0)
+                    {
+                        towerPlacedYet = true;
+                        break;
+                    }
+                }
+                yield return 1.0;
+            }
+
             for(i = 0; i < 6; i++)
             {
                 CreateEnemy<Orc>();

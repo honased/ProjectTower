@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="5" height="5" tilewidth="12" tileheight="12" infinite="0" nextlayerid="3" nextobjectid="7">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="5" height="5" tilewidth="12" tileheight="12" infinite="0" nextlayerid="7" nextobjectid="7">
  <editorsettings>
   <export target="map_menu.json" format="json"/>
  </editorsettings>
@@ -12,6 +12,18 @@
 0,0,0,0,0
 </data>
  </layer>
+ <imagelayer id="3" name="Layer0">
+  <image source="../../Sprites/BackgroundMenuLayer0.png" width="640" height="360"/>
+ </imagelayer>
+ <imagelayer id="4" name="Layer1" parallaxy="0.8">
+  <image source="../../Sprites/BackgroundMenuLayer1.png" width="640" height="360"/>
+ </imagelayer>
+ <imagelayer id="5" name="Layer2" parallaxy="0.66">
+  <image source="../../Sprites/BackgroundMenuLayer2.png" width="640" height="360"/>
+ </imagelayer>
+ <imagelayer id="6" name="Layer3" offsetx="0" offsety="100" parallaxy="0.5">
+  <image source="../../Sprites/BackgroundMenuLayer3.png" width="640" height="360"/>
+ </imagelayer>
  <objectgroup id="2" name="Object Layer 1">
   <object id="6" type="Menu" x="23.4114" y="30.7523" width="16" height="16"/>
  </objectgroup>

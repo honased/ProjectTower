@@ -52,7 +52,7 @@ namespace ProjectTower.Entities
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawFilledRectangle(new Rectangle(0, 0, (int)Camera.CameraSize.X, (int)Camera.CameraSize.Y), Color.FromNonPremultiplied(0, 0, 0, (int)(alpha * 255)));
+            spriteBatch.DrawFilledRectangle(new Rectangle(0, -256, (int)Camera.CameraSize.X, (int)Camera.CameraSize.Y + 512), Color.FromNonPremultiplied(0, 0, 0, (int)(alpha * 255)));
 
             base.Draw(gameTime, spriteBatch);
         }

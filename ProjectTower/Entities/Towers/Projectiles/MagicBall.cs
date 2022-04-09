@@ -24,7 +24,7 @@ namespace ProjectTower.Entities.Towers.Projectiles
         public MagicBall(float x, float y, Vector2 vel)
         {
             _transform = new Transform2D(this) { Position = new Vector2(x, y) };
-            _collider = new Collider2D(this) { Shape = new BoundingCircle(4), Transform = _transform };
+            _collider = new Collider2D(this) { Shape = new BoundingCircle(4) { Position = _transform.Position }, Transform = _transform};
             _velocity = new Velocity2D();
             _velocity.Set(vel);
 

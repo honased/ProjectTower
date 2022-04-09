@@ -12,7 +12,7 @@ namespace HonasGame
         private static GamePadState _padState;
         private static GamePadState _padStateOld;
 
-        private static float DEAD_ZONE = 0.1f;
+        private static float DEAD_ZONE = 0.15f;
 
         internal static void Update()
         {

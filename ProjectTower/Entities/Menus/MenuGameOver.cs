@@ -5,6 +5,7 @@ using HonasGame.Rendering;
 using HonasGame.Tiled;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,7 +28,7 @@ namespace ProjectTower.Entities.Menus
 
         public override void Update(GameTime gameTime)
         {
-            if(Input.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Enter))
+            if(Input.IsKeyPressed(Keys.Enter) || Input.IsButtonPressed(Buttons.A))
             {
                 Scene.AddEntity(new RoomTransition("map_menu"));
                 Enabled = false;
@@ -45,7 +46,7 @@ namespace ProjectTower.Entities.Menus
 
             spriteBatch.DrawString(_font, str, Camera.CameraSize / 2.0f, Color.White, 0.0f, bounds, 2.0f, SpriteEffects.None, 0.0f);
 
-            str = "Press Enter To Continue Because You Can't Stop...Playing?";
+            str = "Press Enter/[A] To Continue Because You Can't Stop...Playing?";
             bounds = _font.MeasureString(str) / 2.0f;
             spriteBatch.DrawString(_font, str, new Vector2(Camera.CameraSize.X / 2.0f, Camera.CameraSize.Y / 3.0f * 2.0f), Color.White, 0.0f, bounds, 1.5f, SpriteEffects.None, 0.0f);
 

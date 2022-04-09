@@ -30,16 +30,17 @@ namespace ProjectTower
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            _graphics.PreferredBackBufferWidth = 1280;
-            _graphics.PreferredBackBufferHeight = 720;
-            _graphics.IsFullScreen = false;
-
             Camera.CameraSize = new Vector2(640, 360);
         }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            _graphics.PreferredBackBufferWidth = GraphicsDevice.Adapter.CurrentDisplayMode.Width;
+            _graphics.PreferredBackBufferHeight = GraphicsDevice.Adapter.CurrentDisplayMode.Height;
+            _graphics.IsFullScreen = true;
+            _graphics.ApplyChanges();
 
             base.Initialize();
         }
@@ -54,6 +55,10 @@ namespace ProjectTower
             AssetLibrary.AddAsset("rat", Content.Load<Texture2D>("Sprites/Rat"));
             AssetLibrary.AddAsset("giant", Content.Load<Texture2D>("Sprites/Giant"));
             AssetLibrary.AddAsset("backgroundMenu", Content.Load<Texture2D>("Sprites/BackgroundMenu"));
+            AssetLibrary.AddAsset("BackgroundMenuLayer0", Content.Load<Texture2D>("Sprites/BackgroundMenuLayer0"));
+            AssetLibrary.AddAsset("BackgroundMenuLayer1", Content.Load<Texture2D>("Sprites/BackgroundMenuLayer1"));
+            AssetLibrary.AddAsset("BackgroundMenuLayer2", Content.Load<Texture2D>("Sprites/BackgroundMenuLayer2"));
+            AssetLibrary.AddAsset("BackgroundMenuLayer3", Content.Load<Texture2D>("Sprites/BackgroundMenuLayer3"));
             AssetLibrary.AddAsset("towerPlot", Content.Load<Texture2D>("Sprites/TowerPlot"));
             AssetLibrary.AddAsset("archerTower", Content.Load<Texture2D>("Sprites/ArcherTower"));
             AssetLibrary.AddAsset("mortarTower", Content.Load<Texture2D>("Sprites/MortarTower"));

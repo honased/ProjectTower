@@ -38,10 +38,11 @@ namespace ProjectTower.Components
         {
             float t = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            var right = Input.IsKeyDown(Keys.Right) || Input.IsKeyDown(Keys.D);
-            var left = Input.IsKeyDown(Keys.Left) || Input.IsKeyDown(Keys.A);
-            var up = Input.IsKeyDown(Keys.Up) || Input.IsKeyDown(Keys.W);
-            var down = Input.IsKeyDown(Keys.Down) || Input.IsKeyDown(Keys.S);
+            var right = Input.IsKeyDown(Keys.Right) || Input.IsKeyDown(Keys.D) || Input.CheckAnalogDirection(true, true, 1);
+            var left = Input.IsKeyDown(Keys.Left) || Input.IsKeyDown(Keys.A) || Input.CheckAnalogDirection(true, true, -1);
+            var up = Input.IsKeyDown(Keys.Up) || Input.IsKeyDown(Keys.W) || Input.CheckAnalogDirection(true, false, -1);
+            var down = Input.IsKeyDown(Keys.Down) || Input.IsKeyDown(Keys.S) || Input.CheckAnalogDirection(true, false, 1);
+            var ePressed = Input.IsKeyPressed(Keys.E) || Input.IsButtonPressed(Buttons.A);
 
             int vx = ((right ? 1 : 0) - (left ? 1 : 0));
             int vy = ((down ? 1 : 0) - (up ? 1 : 0));
@@ -59,7 +60,7 @@ namespace ProjectTower.Components
             {
                 if ((tag & Globals.TAG_TOWER_PLOT) > 0 && e is TowerPlot tp)
                 {
-                    if (Input.IsKeyPressed(Keys.E) && tp.GetComponent<Transform2D>(out var tpTransf) && Parent.GetComponent<TowerPickup>(out var towerPickup))
+                    if (ePressed && tp.GetComponent<Transform2D>(out var tpTransf) && Parent.GetComponent<TowerPickup>(out var towerPickup))
                     {
                         Entity addEnt = null;
                         switch(towerPickup.TowerType)
@@ -85,10 +86,12 @@ namespace ProjectTower.Components
                         Parent.RemoveComponent(towerPickup);
                     }
                 }
-                else if((tag & Globals.TAG_TOWER) > 0 && e.GetComponent<HealthComponent>(out var hp) && Input.IsKeyPressed(Keys.E))
+                else if((tag & Globals.TAG_TOWER) > 0 && e.GetComponent<HealthComponent>(out var hp) && ePressed)
                 {
                     hp.Health += 10;
                     AssetLibrary.GetAsset<SoundEffect>("Repair").Play();
+
+                    if (e.GetComponent<ScaleAnimator>(out var animator) && animator.Scale.X < 1.1f) animator.Scale = Vector2.One * 0.8f;
                 }
             }
 

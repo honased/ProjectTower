@@ -32,6 +32,7 @@ namespace ProjectTower.Entities.Players
             Globals.LastEnemyToGo = false;
             _font = AssetLibrary.GetAsset<SpriteFont>("fntText");
             _textureHeart = AssetLibrary.GetAsset<Texture2D>("heart");
+            Camera.Position = Vector2.Zero;
         }
 
         public override void Update(GameTime gameTime)

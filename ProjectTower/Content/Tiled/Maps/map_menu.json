@@ -15,6 +15,51 @@
          "y":0
         }, 
         {
+         "id":3,
+         "image":"..\/..\/Sprites\/BackgroundMenuLayer0.png",
+         "name":"Layer0",
+         "opacity":1,
+         "type":"imagelayer",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "id":4,
+         "image":"..\/..\/Sprites\/BackgroundMenuLayer1.png",
+         "name":"Layer1",
+         "opacity":1,
+         "parallaxy":0.8,
+         "type":"imagelayer",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "id":5,
+         "image":"..\/..\/Sprites\/BackgroundMenuLayer2.png",
+         "name":"Layer2",
+         "opacity":1,
+         "parallaxy":0.66,
+         "type":"imagelayer",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "id":6,
+         "image":"..\/..\/Sprites\/BackgroundMenuLayer3.png",
+         "name":"Layer3",
+         "offsetx":0,
+         "offsety":100,
+         "opacity":1,
+         "parallaxy":0.5,
+         "type":"imagelayer",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
          "draworder":"topdown",
          "id":2,
          "name":"Object Layer 1",
@@ -27,8 +72,8 @@
                  "type":"Menu",
                  "visible":true,
                  "width":16,
-                 "x":23.4114081014053,
-                 "y":30.7522733535409
+                 "x":23.4114,
+                 "y":30.7523
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -36,15 +81,15 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":3,
+ "nextlayerid":7,
  "nextobjectid":7,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.8.2",
+ "tiledversion":"1.7.2",
  "tileheight":12,
  "tilesets":[],
  "tilewidth":12,
  "type":"map",
- "version":"1.8",
+ "version":"1.6",
  "width":5
 }
